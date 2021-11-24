@@ -14,11 +14,11 @@
         <div class="discipline">Веб-программирование</div>
         <div class="author">
             <span class="author__label">Работу выполнил:</span>
-            <span class="autor__value"><b>Скориков Родион, P3130</b></span>
+            <span class="autor__value"><b>Скориков Родион, P3230</b></span>
         </div>
         <div class="variant">
             <span class="variant__label">Номер варианта:</span>
-            <b class="variant__value">30014</b>
+            <b class="variant__value">30314</b>
         </div>
     </header>
     <main class="content">
