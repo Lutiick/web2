@@ -14,7 +14,7 @@ public class AreaCheckServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String response_json = "";
         try {
-            int x = CoordsParser.parseInt(request.getParameter("x"));
+            double x = CoordsParser.parseDouble(request.getParameter("x"));
             double y = CoordsParser.parseDouble(request.getParameter("y"));
             double r = CoordsParser.parseDouble(request.getParameter("r"));
 
@@ -30,6 +30,8 @@ public class AreaCheckServlet extends HttpServlet {
             }
         } catch (NumberFormatException e) {
             response_json = View.makeError("Not valid coords");
+        } catch (NullPointerException e) {
+            response_json = View.makeError("Not all arguments");
         }
 
 

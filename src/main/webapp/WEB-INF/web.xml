@@ -16,6 +16,10 @@
     <servlet-name>CleanSession</servlet-name>
     <servlet-class>com.example.web2.CleanServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DataJson</servlet-name>
+    <servlet-class>com.example.web2.DataJsonServlet</servlet-class>
+  </servlet>
 
 
   <servlet-mapping>
@@ -29,6 +33,10 @@
   <servlet-mapping>
     <servlet-name>CleanSession</servlet-name>
     <url-pattern>/clean</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DataJson</servlet-name>
+    <url-pattern>/getjson</url-pattern>
   </servlet-mapping>
 
 

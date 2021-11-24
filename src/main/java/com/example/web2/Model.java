@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 
 public class Model {
-    static HitData operate(Integer x, Double y, Double r, HttpSession session) {
+    static HitData operate(Double x, Double y, Double r, HttpSession session) {
         String currentTime = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
         boolean hit = checkHit(x, y, r);
 
@@ -46,19 +46,19 @@ public class Model {
         return true;
     }
 
-    private static boolean checkTriangle(int x, double y, double r) {
+    private static boolean checkTriangle(double x, double y, double r) {
         return x >= 0 && y <= 0 && y - ((double) x) >= -r;
     }
 
-    private static boolean checkRectangle(int x, double y, double r) {
+    private static boolean checkRectangle(double x, double y, double r) {
         return x >= 0 && y >= 0 && ((double) x) <= r && y <= r;
     }
 
-    private static boolean checkCircle(int x, double y, double r) {
+    private static boolean checkCircle(double x, double y, double r) {
         return x <= 0 && y >= 0 && ((double) (x * x)) + y*y <= r*r/4;
     }
 
-    private static boolean checkHit(int x, double y, double r) {
+    private static boolean checkHit(double x, double y, double r) {
         return checkTriangle(x, y, r) || checkRectangle(x, y, r)||checkCircle(x, y, r);
     }
 }

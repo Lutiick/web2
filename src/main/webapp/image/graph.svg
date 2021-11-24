@@ -36,12 +36,12 @@
 <line class="st1" x1="196.2" y1="120.4" x2="203.8" y2="120.4"/>
 <line class="st1" x1="196.4" y1="358.8" x2="203.8" y2="358.8"/>
 <line class="st1" x1="196.4" y1="279.6" x2="203.8" y2="279.6"/>
-<text transform="matrix(1 0 0 1 351.7871 189.915)" class="st2 st3">R</text>
-<text transform="matrix(1 0 0 1 261.4043 189.915)" class="st2 st3">R/2</text>
-<text transform="matrix(1 0 0 1 208.8086 367.1074)" class="st2 st3">-R</text>
-<text transform="matrix(1 0 0 1 211.3613 50.5107)" class="st2 st3">R</text>
-<text transform="matrix(1 0 0 1 211.3613 128.1279)" class="st2 st3">R/2</text>
-<text transform="matrix(1 0 0 1 32.6382 189.915)" class="st2 st3">-R</text>
-<text transform="matrix(1 0 0 1 95.9575 189.915)" class="st2 st3">-R/2</text>
-<text transform="matrix(1 0 0 1 208.8086 286.9355)" class="st2 st3">-R/2</text>
+<text transform="matrix(1 0 0 1 351.7871 189.915)" class="st2 st3 R">1</text>
+<text transform="matrix(1 0 0 1 261.4043 189.915)" class="st2 st3 hR">0.5</text>
+<text transform="matrix(1 0 0 1 208.8086 367.1074)" class="st2 st3 mR">-1</text>
+<text transform="matrix(1 0 0 1 211.3613 50.5107)" class="st2 st3 mR">-1</text>
+<text transform="matrix(1 0 0 1 211.3613 128.1279)" class="st2 st3 hR">0.5</text>
+<text transform="matrix(1 0 0 1 32.6382 189.915)" class="st2 st3 mR">-1</text>
+<text transform="matrix(1 0 0 1 95.9575 189.915)" class="st2 st3 mhR">-0.5</text>
+<text transform="matrix(1 0 0 1 208.8086 286.9355)" class="st2 st3 mhR">-0.5</text>
 </svg>

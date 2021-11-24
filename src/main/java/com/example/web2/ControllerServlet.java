@@ -19,6 +19,9 @@ public class ControllerServlet extends HttpServlet {
         } else if (requestType.equals("clean")) {
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/clean");
             dispatcher.forward(request, response);
+        } else if (requestType.equals("getjson")) {
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/getjson");
+            dispatcher.forward(request, response);
         } else {
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);

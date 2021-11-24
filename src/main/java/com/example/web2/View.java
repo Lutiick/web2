@@ -1,14 +1,18 @@
 package com.example.web2;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class View {
     static private String sussessFormat = "{" +
-            "\"x\": \"%d\"," +
+            "\"x\": \"%f\"," +
             "\"y\": \"%f\"," +
             "\"r\": \"%f\"," +
             "\"current_time\": \"%s\"," +
             "\"hit\": \"%s\"" +
             "}";
     static private String errorFormat = "{\"error\": \"%s\"}";
+    static private String listFormat = "[%s]";
 
     public static String makeSuccess(HitData hitData) {
         return String.format(
@@ -19,6 +23,21 @@ public class View {
                 hitData.getCurrentTime(),
                 hitData.getHit()
                 );
+    }
+
+    public static String makeSuccessList(HitData.ListHitsData hitsData) {
+        StringBuilder result = new StringBuilder();
+        Iterator<HitData> iterator = hitsData.getIterator();
+        while(iterator.hasNext()) {
+            result.append(makeSuccess(iterator.next()));
+            if (iterator.hasNext()) {
+                result.append(",");
+            }
+        }
+        return String.format(
+                listFormat,
+                result.toString()
+        );
     }
 
     public static String makeError(String error) {

@@ -11,7 +11,7 @@ public class Validator {
 
 
 
-    static public boolean validateX(int x) {
+    static public boolean validateX(double x) {
         try {
             return (x >= x_min) && (x_max >= x);
         }
@@ -38,7 +38,7 @@ public class Validator {
         }
     }
 
-    static public boolean validate(int x, double y, double r) {
+    static public boolean validate(double x, double y, double r) {
         return validateX(x) && validateY(y) && validateR(r);
     }
 

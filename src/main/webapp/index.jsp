@@ -1,10 +1,4 @@
-<%@ page import="com.example.web2.Model" %>
-<%@ page import="com.example.web2.HitData" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.Locale" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% HitData.ListHitsData listHitsData = Model.getHitsList(request.getSession()); %>
-<% Iterator<HitData> hitsIterator; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,35 +29,19 @@
                     data="image/graph.svg"
                     id="graph">
                     </object>
-                <svg version="1.1" id="graph_dots" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
-                    <% hitsIterator = listHitsData.getIterator(); %>
-                    <%
-                        double delta_x = 200; // центр графика
-                        double delta_y = 200; // центр графика
-                        double delta_r = 158;
-                        while (hitsIterator.hasNext()) {
-                            HitData hitData = hitsIterator.next();
-                            double cx = (hitData.getX() / hitData.getR()) * delta_r + delta_x;
-                            double cy = (-hitData.getY() / hitData.getR()) * delta_r + delta_y;
-                            String color = hitData.getHit() ? "green" : "red";
-                    %>
-                    <circle
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="ad-cirle"
-                            cx="<%= cx %>"
-                            cy="<%= cy %>"
-                            fill="<%= color %>"
-                            r="5"/>
-                    <% } %>
-                </svg>
 
             </div>
             <div class="form-wrapper">
                 <form id="form" action="" method="POST">
                     <div class="input-wrapper">
                         <label for="xcord">Введите координату X [-3; 5]</label>
-                        <input type="text" name="xcord" id="xcord">
+                        <select name="xcord" id="xcord">
+                            <option value="1" selected>1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                        </select>
                     </div>
                     <div class="input-wrapper">
                         <label for="ycord">Введите координату Y [-5; 3]</label>
@@ -111,22 +89,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% hitsIterator = listHitsData.getIterator();%>
-                <%
-                    while (hitsIterator.hasNext()) {
-                        HitData hitData = hitsIterator.next();
-                %>
-                    <tr class="hit<%= hitData.getHit() ? 0 : 1 %>">
-                        <td>
-                            (<%= hitData.getX() %>,
-                            <%= String.format(Locale.US, "%.2f", hitData.getY())%>>)
-                        </td>
-                        <td><%= String.format(Locale.US, "%.2f", hitData.getR())%></td>
-                        <td><%= hitData.getCurrentTime()%></td>
-                        <td></td>
-                        <td><%= hitData.getHit() ? "Попадание" : "Промах" %></td>
-                    </tr>
-                <% } %>
                 </tbody>
             </table>
         </div>

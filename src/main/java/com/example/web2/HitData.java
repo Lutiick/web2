@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class HitData {
-    private Integer x;
+    private Double x;
     private Double y;
     private Double r;
     private String currentTime;
@@ -13,7 +13,7 @@ public class HitData {
     public HitData() {
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
     public void setY(double y) {
@@ -28,7 +28,7 @@ public class HitData {
     public void setCurrentTime(String time) {
         this.currentTime = time;
     }
-    public Integer getX() {
+    public Double getX() {
         return x;
     }
     public Double getY() {
