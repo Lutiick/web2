@@ -164,10 +164,18 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: (resp, e) => {
-                $("#error-box").text("Непредвиденная ошибка");
+                printError("Непредвиденная ошибка");
             },
             dataType: "json"
         });
+    }
+
+    function printError(message) {
+        $("#error-box").text(message);
+    }
+
+    function removeError() {
+        $("#error-box").text("");
     }
 
     window.onload = () => {
@@ -187,6 +195,7 @@ jQuery(document).ready(function ($) {
         loadTableGraph(tableWorker, graphWorker);
         // Валидация Y
         $("#ycord").on("input", function () {
+            removeError();
             let val = $("#ycord").val()
             val = val.replace(/[^(0-9\.\,\-)]+/g, "") // Убирает все символы кроме [цифр . , -]
             val = val.replace(/[\.\,]{1,}/, '.'); // Заменяет все точки и запятые на одну точку
@@ -203,6 +212,7 @@ jQuery(document).ready(function ($) {
 
         // Валидация X
         $("#xcord").on("input", function() {
+            removeError();
             let val = $("#xcord").val()
             val = val.replace(/[^(0-9\-)]+/g, "") // Убирает все символы кроме [цифр -]
             if (val != "-") {
@@ -215,12 +225,12 @@ jQuery(document).ready(function ($) {
 
         // Отправка данных на сервер
         $("#form").on("submit", function() {
+            removeError();
             let xval = $('#xcord').val();
             let yval = $("#ycord").val();
             let rval = $('input[name="radio"]:checked').val();
-            $("#error-box").text("");
             if (xval == "" || yval == "" || rval == "") {
-                $("#error-box").text("Ошибка! Заполните все поля");
+                printError("Ошибка! Заполните все поля");
             } else {
                 timestamp = Date.now();
                 $.ajax({
@@ -236,7 +246,7 @@ jQuery(document).ready(function ($) {
                     success: function(res) {
                         timestamp = Date.now() - timestamp;
                         if ("error" in res) {
-                            $("#error-box").text("Ошибочка вышла, отправте нормально данные через форму")
+                            printError("Ошибочка вышла, отправте нормально данные через форму")
                         } else {
                             res["script_time"] = timestamp;
                             let json = JSON.stringify(res);
@@ -245,7 +255,7 @@ jQuery(document).ready(function ($) {
                         }
                     },
                     error: (resp, e) => {
-                        $("#error-box").text("Непредвиденная ошибка");
+                        printError("Непредвиденная ошибка");
                     },
                     dataType: "json"
                 })
@@ -255,6 +265,7 @@ jQuery(document).ready(function ($) {
 
         // Очистка сессии, графа, таблицы
         $("#reset").on("click", function() {
+            removeError();
             $.ajax({
                 type: "GET",
                 url: SCRIPT_URL,
@@ -266,26 +277,28 @@ jQuery(document).ready(function ($) {
                     graphWorker.clean();
                 },
                 error: (resp, e) => {
-                    $("#error-box").text("Непредвиденная ошибка");
+                    printError("Непредвиденная ошибка");
                 },
                 dataType: "text"
             })
         });
 
         $('input[type=radio][name=radio]').on("change", function() {
+            removeError();
             graphWorker.redrawCircles();
-            $("#error-box").text("");
+            removeError();
         });
 
+        // Интерактивный график
         let counter = 1;
         $(svg).on("click", function(ev) {
-
+            removeError();
             let id = counter;
             let posX = $(this).offset().left,
                 posY = $(this).offset().top;
             let init_r = $('input[name="radio"]:checked').val();
             if (!init_r) {
-                $("#error-box").text("Ошибочка вышла, введите радиус");
+                printError("Ошибочка вышла, введите радиус");
                 return;
             }
             let [x, y] = svgDrawer.drawPointFromCoords(
@@ -310,7 +323,8 @@ jQuery(document).ready(function ($) {
                 success: function(res) {
                     timestamp = Date.now() - timestamp;
                     if ("error" in res) {
-                        $("#error-box").text("Ошибочка вышла, отправте нормально данные через форму")
+                        printError("Ошибочка вышла, данные выходят за диапазон значений");
+                        svgDrawer.deletePoint(id);
                     } else {
                         res["script_time"] = timestamp;
                         let json = JSON.stringify(res);
@@ -320,7 +334,7 @@ jQuery(document).ready(function ($) {
                     }
                 },
                 error: (resp, e) => {
-                    $("#error-box").text("Непредвиденная ошибка");
+                    printError("Непредвиденная ошибка");
                 },
                 dataType: "json"
             })
