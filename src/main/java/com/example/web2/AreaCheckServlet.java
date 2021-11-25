@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class AreaCheckServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String response_json = "";
+        String response_json;
         try {
             double x = CoordsParser.parseDouble(request.getParameter("x"));
             double y = CoordsParser.parseDouble(request.getParameter("y"));
@@ -25,8 +25,7 @@ public class AreaCheckServlet extends HttpServlet {
             else if (!Validator.validateR(r))
                 response_json = View.makeError("Error in r");
             else {
-                HitData hitData = Model.operate(x, y, r, request.getSession());
-                response_json = View.makeSuccess(hitData);
+                response_json = View.makeSuccess(Model.operate(x, y, r, request.getSession()));
             }
         } catch (NumberFormatException e) {
             response_json = View.makeError("Not valid coords");

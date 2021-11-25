@@ -10,7 +10,7 @@ public class CleanServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Model.cleanHitData(request.getSession());
         try (PrintWriter out = response.getWriter()) {
-            out.print(View.makeSusseccClean());
+            out.print(View.makeSuccessClean());
         }
     }
 }

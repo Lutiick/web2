@@ -45,10 +45,10 @@ public class HitData {
     }
 
     public static class ListHitsData{
-        private ArrayList<HitData> HitsData;
+        private final ArrayList<HitData> HitsData;
 
         public ListHitsData() {
-            HitsData = new ArrayList<HitData>();
+            HitsData = new ArrayList<>();
         }
 
         public void add(HitData e) {

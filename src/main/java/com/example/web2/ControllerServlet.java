@@ -13,18 +13,27 @@ public class ControllerServlet extends HttpServlet {
         if (requestType == null) {requestType = "";}
         else {requestType = requestType.trim();}
 
-        if (requestType.equals("coords")) {
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/areacheck");
-            dispatcher.forward(request, response);
-        } else if (requestType.equals("clean")) {
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/clean");
-            dispatcher.forward(request, response);
-        } else if (requestType.equals("getjson")) {
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/getjson");
-            dispatcher.forward(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+        switch (requestType) {
+            case "coords": {
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/areacheck");
+                dispatcher.forward(request, response);
+                break;
+            }
+            case "clean": {
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/clean");
+                dispatcher.forward(request, response);
+                break;
+            }
+            case "getjson": {
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/getjson");
+                dispatcher.forward(request, response);
+                break;
+            }
+            default: {
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
+                break;
+            }
         }
     }
 
