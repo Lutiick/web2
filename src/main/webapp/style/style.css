@@ -59,7 +59,7 @@ body {
     left:0;
     right:0;
     bottom:0;
-    background-image: url("../../image/cloun.jpg");
+    background-image: url("../image/cloun.jpg");
     opacity: 0.1;
     z-index: -1;
 }

@@ -1,4 +1,4 @@
-const SCRIPT_URL = "/";
+const SCRIPT_URL = "";
 var timestamp = 0;
 
 jQuery(document).ready(function ($) {
